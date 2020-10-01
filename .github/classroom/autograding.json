@@ -1,0 +1,54 @@
+{
+  "tests": [
+    {
+      "name": "Lint",
+      "setup": "npm install",
+      "run": "npm run lint",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "Inquiries",
+      "setup": "npm install",
+      "run": "npm run test:Inquiries",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "ViewListings",
+      "setup": "npm install",
+      "run": "npm run test:ViewListings",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "ListingCreationForm",
+      "setup": "npm install",
+      "run": "npm run test:ListingCreationForm",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "Listing",
+      "setup": "npm install",
+      "run": "npm run test:Listing",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 20
+    }
+  ]
+}
