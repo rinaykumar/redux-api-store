@@ -26,7 +26,7 @@ const ViewListings = () => {
       <p>Title: {item.title}</p>
       <p>ID: {item.id}</p>
     </div>
-  )
+  );
 
   return (
     <div>
