@@ -13,10 +13,10 @@ const handleClick = (description, type, price, title) => (e) => {
     type: type,
     price: price,
     title: title,
-  }
-  axios.post('/api/createListing', bodyData)
-  axios.get('/api/viewListings') 
-}
+  };
+  axios.post('/api/createListing', bodyData);
+  axios.get('/api/viewListings'); 
+};
 
 const ListingCreationForm = () => {
   const dispatch = useDispatch();
