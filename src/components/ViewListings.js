@@ -1,8 +1,9 @@
 import React from 'react';
+import Listing from '../components/Listing';
 
 const axios = require('axios');
 
-const ViewListings = () => {
+const ViewListings = ({userMode}) => {
   const [items, setItems] = React.useState([]);
   
   const fetchItems = () => {
@@ -19,12 +20,8 @@ const ViewListings = () => {
   }, []);
   
   let itemsList = items.map((item) =>
-    <div key={item.id} className='listing'>
-      <p>Description: {item.description}</p>
-      <p>Type: {item.type}</p>
-      <p>Price: {item.price}</p>
-      <p>Title: {item.title}</p>
-      <p>ID: {item.id}</p>
+    <div key={item.id}>
+      <Listing listing={item} userMode={userMode} />
     </div>
   );
 

@@ -1,10 +1,76 @@
 import React from 'react';
 
-const Listing = () => {
+import { useSelector, useDispatch } from 'react-redux';
+import { setMessage } from '../redux/actions/inquiryActions'
+
+const axios = require('axios');
+
+let inquiries = [];
+
+const handleDelete = (id) => (e) => {
+  e.preventDefault();
+  axios.get('/api/deleteListing?id=' + id); 
+};
+
+const handleView = (id) => (e) => {
+  e.preventDefault();
+
+  axios.get('/api/getInquiries?listingId=' + id)
+    .then((res) => {
+      console.log(res);
+      inquiries = res.data.inquiries;
+    })
+    .catch(console.log);
+};
+
+const handleSubmit = (id, message) => (e) => {
+  e.preventDefault();
+  axios.post('/api/makeInquiry?listingId=' + id, {
+    message
+  }); 
+};
+
+const Listing = ({listing, userMode}) => {
+  const dispatch = useDispatch();
+  const message = useSelector(state => state.inquiryReducer.inquiries);
 
   return (
-    <table className="listing">
-    </table>
+    <div>
+      <table className="listing">
+        <tbody>
+          <tr>
+            <td>Description: </td>
+            <td>{listing.description}</td>
+          </tr>
+          <tr>
+            <td>Type: </td>
+            <td>{listing.type}</td>
+          </tr>
+          <tr>
+            <td>Price: </td>
+            <td>{listing.price}</td>
+          </tr>
+          <tr>
+            <td>Title: </td>
+            <td>{listing.title}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        {userMode && (
+          <div>
+            <textarea value={message} onChange={e => dispatch(setMessage(e.target.value))}></textarea>
+            <button className='submit' onClick={handleSubmit(listing.id, message)}>Submit</button>
+          </div>
+        )}
+        {!userMode && (
+          <div>
+            <button onClick={handleDelete(listing.id)}>Delete</button>
+            <button onClick={handleView(listing.id)}>View Inquiries</button>
+          </div>
+        )}
+      </div>
+    </div>   
   );
 };
 
