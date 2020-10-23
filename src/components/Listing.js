@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setMessage } from '../redux/actions/inquiryActions'
+import { setMessage } from '../redux/actions/inquiryActions';
 
 const axios = require('axios');
 
@@ -19,6 +19,7 @@ const handleView = (id) => (e) => {
     .then((res) => {
       console.log(res);
       inquiries = res.data.inquiries;
+      console.log(inquiries);
     })
     .catch(console.log);
 };
