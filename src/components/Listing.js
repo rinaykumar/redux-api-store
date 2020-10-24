@@ -7,33 +7,34 @@ const axios = require('axios');
 
 let inquiries = [];
 
-const handleDelete = (id) => (e) => {
-  e.preventDefault();
-  axios.get('/api/deleteListing?id=' + id); 
-};
-
-const handleView = (id) => (e) => {
-  e.preventDefault();
-
-  axios.get('/api/getInquiries?listingId=' + id)
-    .then((res) => {
-      console.log(res);
-      inquiries = res.data.inquiries;
-      console.log(inquiries);
-    })
-    .catch(console.log);
-};
-
-const handleSubmit = (id, message) => (e) => {
-  e.preventDefault();
-  axios.post('/api/makeInquiry?listingId=' + id, {
-    message
-  }); 
-};
-
 const Listing = ({listing, userMode}) => {
   const dispatch = useDispatch();
   const message = useSelector(state => state.inquiryReducer.inquiries);
+
+  const handleDelete = (id) => (e) => {
+    e.preventDefault();
+    axios.get('/api/deleteListing?id=' + id); 
+  };
+  
+  const handleSubmit = (id, message) => (e) => {
+    e.preventDefault();
+    axios.post('/api/makeInquiry?listingId=' + id, {
+      message
+    }); 
+  };
+
+  const handleView = (id) => (e) => {
+    e.preventDefault();
+  
+    axios.get('/api/getInquiries?listingId=' + id)
+      .then((res) => {
+        console.log(res);
+        inquiries = res.data.inquiries;
+        console.log(inquiries);
+        dispatch(setMessage(inquiries));
+      })
+      .catch(console.log);
+  };
 
   return (
     <div>
